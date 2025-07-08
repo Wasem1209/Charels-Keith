@@ -1,7 +1,9 @@
 import React from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import AdminPanel from "./pages/AdminPanel";
 import "./App.css";
 import TrackPage from "./pages/TrackPage";
+import ResultPage from "./pages/ResultPage";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -42,6 +44,8 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/admin" element={<AdminPanel />} />
+      <Route path="/track/:id" element={<ResultPage />} />
       <Route path="/track" element={<TrackPage />} />
     </Routes>
   );
