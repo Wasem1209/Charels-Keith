@@ -49,7 +49,7 @@ function AdminPanel() {
   return (
     <div className="admin-panel">
       <h2>Admin Panel</h2>
-      <button onClick={generateTrackingID}>Generate Tracking ID</button>
+      <button onClick={generateTrackingID}>Create Tracking ID</button>
       <p><strong>Tracking ID:</strong> {trackingID}</p>
 
       <form onSubmit={handleSubmit}>
