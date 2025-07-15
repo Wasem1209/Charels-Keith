@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./AdminPanel.css"
 
 function AdminPanel() {
   const [trackingID, setTrackingID] = useState("");
