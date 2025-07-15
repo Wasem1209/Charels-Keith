@@ -33,7 +33,7 @@ function AdminPanel() {
     };
 
     try {
-      const res = await fetch("https://ck-backend-oakm.onrender.com", {
+      const res = await fetch("https://ck-backend-oakm.onrender.com/api/track/${id}", {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

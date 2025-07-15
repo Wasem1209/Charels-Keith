@@ -9,7 +9,7 @@ function ResultsPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://ck-backend-oakm.onrender.com`)
+    fetch(`https://ck-backend-oakm.onrender.com/api/track/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data && !data.message) {
