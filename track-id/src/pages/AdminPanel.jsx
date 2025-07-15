@@ -19,6 +19,7 @@ function AdminPanel() {
     setTrackingID(`AA${num}US`);
   };
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,9 +32,11 @@ function AdminPanel() {
       contents,
       travel_history: history
     };
+     
+    
 
     try {
-      const res = await fetch("https://ck-backend-oakm.onrender.com/api/admin/add", {
+      const res = await fetch("${backendUrl}/api/admin/add", {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
