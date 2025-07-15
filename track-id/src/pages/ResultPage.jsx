@@ -1,10 +1,9 @@
-// src/pages/ResultsPage.jsx
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./ResultPage.css";
 
 function ResultsPage() {
-  const { id } = useParams(); // From URL
+  const { id } = useParams();
   const [shipment, setShipment] = useState(null);
   const [loading, setLoading] = useState(true);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -33,20 +32,19 @@ function ResultsPage() {
     <div className="results-page">
       <h2>Tracking Info for: <strong>{id}</strong></h2>
 
-      {/* Progress Bar */}
       <section className="progress-container">
         <h3>Shipment Progress</h3>
         <div className="progress-bar">
-          {["Order Placed", "Processed", "Shipped", "In Transit", "Delivered"].map((step, index) => (
-            <div key={index} className='{progress-step ${shipment.progress >= index ? "active" : ""}}'>
+          {["Ordered", "Processed", "Shipped", "In Transit", "Delivered"].map((step, index) => (
+            <div key='{index} className= {progress-step ${shipment.progress >= index ? "active" : ""}}'>
               <div className="circle">{index + 1}</div>
               <p>{step}</p>
             </div>
           ))}
         </div>
       </section>
-
-      {/* Shipper & Receiver Details */}
+      
+      
       <section className="shipment-profile">
         <h3>Shipment Profile</h3>
         <div className="profile-columns">
@@ -63,7 +61,7 @@ function ResultsPage() {
         </div>
       </section>
 
-      {/* Shipment Description */}
+      
       <section>
         <h3>Shipment Description</h3>
         <table className="description-table">
@@ -85,8 +83,6 @@ function ResultsPage() {
           </tbody>
         </table>
       </section>
-
-      {/* Travel History */}
       <section>
         <h3>Shipment Travel History</h3>
         <table className="history-table">
@@ -109,10 +105,9 @@ function ResultsPage() {
         </table>
       </section>
 
-      {/* Status Note */}
       <section>
         <h3>Status Note</h3>
-        <p>{shipment?.note || "bany provided a note!."}</p>
+        <p>{shipment?.note || "No note provided."}</p>
       </section>
     </div>
   );
