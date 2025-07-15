@@ -10,7 +10,7 @@ function ResultsPage() {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
-    fetch(`${backendUrl}/api/admi/api/track/${id}`)
+    fetch(`${backendUrl}/api/track/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data && !data.message) {
