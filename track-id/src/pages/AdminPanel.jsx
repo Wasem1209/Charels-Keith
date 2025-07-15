@@ -23,6 +23,10 @@ function AdminPanel() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+
+    
+    
+
     const payload = {
       tracking_id: trackingID,
       progress,
@@ -32,9 +36,11 @@ function AdminPanel() {
       contents,
       travel_history: history
     };
+    
 
     try {
-      const res = await fetch("https://ck-backend-8vtk.onrender.com/api/admin/add", {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL;
+      const res = await fetch(`${backendUrl}/api/admin/add`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -46,6 +52,7 @@ function AdminPanel() {
       console.error("Submission error:", err);
       alert("Failed to submit shipment.");
     }
+    
   };
 
   return (
