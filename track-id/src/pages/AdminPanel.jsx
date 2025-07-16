@@ -39,8 +39,8 @@ function AdminPanel() {
     
 
     try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL;
-      const res = await fetch(`${backendUrl}/api/admin/add`, {
+      
+      const res = await fetch(`https://ck-backend-8vtk.onrender.com/api/admin/add`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
