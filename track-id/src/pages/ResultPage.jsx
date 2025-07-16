@@ -25,8 +25,10 @@ function ResultsPage() {
       });
   }, [backendUrl, id]);
 
-  if (loading) return <p>Loading shipment info...</p>;
+  if (loading) return <div className="loader">Loading shipment info...</div>;
   if (!shipment) return <p>🚫 No shipment found for ID: {id}</p>;
+
+  const { shipper = {}, receiver = {}, contents = [], travel_history = [], note = "", progress = 0 } = shipment;
 
   return (
     <div className="results-page">
@@ -36,32 +38,30 @@ function ResultsPage() {
         <h3>Shipment Progress</h3>
         <div className="progress-bar">
           {["Ordered", "Processed", "Shipped", "In Transit", "Delivered"].map((step, index) => (
-            <div key={index} className= {`progress-step ${shipment.progress >= index ? "active" : ""}`}>
+            <div key={index} className={`progress-step ${progress >= index ? "active" : ""}`}>
               <div className="circle">{index + 1}</div>
               <p>{step}</p>
             </div>
           ))}
         </div>
       </section>
-      
-      
+
       <section className="shipment-profile">
         <h3>Shipment Profile</h3>
         <div className="profile-columns">
           <div className="column">
             <h4>Shipper</h4>
-            <p><strong>Name:</strong> {shipment?.shipper?.name}</p>
-            <p><strong>Address:</strong> {shipment?.shipper?.address}</p>
+            <p><strong>Name:</strong> {shipper.name}</p>
+            <p><strong>Address:</strong> {shipper.address}</p>
           </div>
           <div className="column">
             <h4>Receiver</h4>
-            <p><strong>Name:</strong> {shipment?.receiver?.name}</p>
-            <p><strong>Address:</strong> {shipment?.receiver?.address}</p>
+            <p><strong>Name:</strong> {receiver.name}</p>
+            <p><strong>Address:</strong> {receiver.address}</p>
           </div>
         </div>
       </section>
 
-      
       <section>
         <h3>Shipment Description</h3>
         <table className="description-table">
@@ -73,16 +73,21 @@ function ResultsPage() {
             </tr>
           </thead>
           <tbody>
-            {shipment?.contents?.map((item, index) => (
-              <tr key={index}>
-                <td>{item.serial}</td>
-                <td>{item.quantity}</td>
-                <td>{item.item}</td>
-              </tr>
-            ))}
+            {contents.length > 0 ? (
+              contents.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.serial}</td>
+                  <td>{item.quantity}</td>
+                  <td>{item.item}</td>
+                </tr>
+              ))
+            ) : (
+              <tr><td colSpan="3">No contents listed.</td></tr>
+            )}
           </tbody>
         </table>
       </section>
+
       <section>
         <h3>Shipment Travel History</h3>
         <table className="history-table">
@@ -94,20 +99,24 @@ function ResultsPage() {
             </tr>
           </thead>
           <tbody>
-            {shipment?.travel_history?.map((event, index) => (
-              <tr key={index}>
-                <td>{event.date}</td>
-                <td>{event.activity}</td>
-                <td>{event.details}</td>
-              </tr>
-            ))}
+            {travel_history.length > 0 ? (
+              travel_history.map((event, index) => (
+                <tr key={index}>
+                  <td>{event.date}</td>
+                  <td>{event.activity}</td>
+                  <td>{event.details}</td>
+                </tr>
+              ))
+            ) : (
+              <tr><td colSpan="3">No travel history available.</td></tr>
+            )}
           </tbody>
         </table>
       </section>
 
       <section>
         <h3>Status Note</h3>
-        <p>{shipment?.note || "No note provided."}</p>
+        <p>{note || "No note provided."}</p>
       </section>
     </div>
   );
