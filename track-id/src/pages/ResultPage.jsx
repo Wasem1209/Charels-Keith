@@ -36,7 +36,7 @@ function ResultsPage() {
         <h3>Shipment Progress</h3>
         <div className="progress-bar">
           {["Ordered", "Processed", "Shipped", "In Transit", "Delivered"].map((step, index) => (
-            <div key='{index} className= {progress-step ${shipment.progress >= index ? "active" : ""}}'>
+            <div key={index} className= {`progress-step ${shipment.progress >= index ? "active" : ""}`}>
               <div className="circle">{index + 1}</div>
               <p>{step}</p>
             </div>
