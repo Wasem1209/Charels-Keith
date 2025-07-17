@@ -6,10 +6,10 @@ function ResultsPage() {
   const { id } = useParams();
   const [shipment, setShipment] = useState(null);
   const [loading, setLoading] = useState(true);
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+ 
 
   useEffect(() => {
-    fetch(`https://ck-backend-8vtk.onrender.com/api/track/${encodeURIComponent(id)}`)
+    fetch(`https://ck-backend-8vtk.onrender.com/api/track/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data && !data.message) {
@@ -23,7 +23,7 @@ function ResultsPage() {
         console.error("❌ Error fetching shipment:", err);
         setLoading(false);
       });
-  }, [backendUrl, id]);
+  }, [id]);
 
   if (loading) return <div className="loader">Loading shipment info...</div>;
   if (!shipment) return <p>🚫 No shipment found for ID: {id}</p>;
