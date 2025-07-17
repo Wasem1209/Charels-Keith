@@ -10,7 +10,7 @@ const TrackPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (trackingId.trim()) {
-            navigate('/track/${trackingId}');
+            navigate(`/track/${trackingId}`);
         }
     };
     // const getName = () => {
