@@ -1,140 +1,186 @@
+/* === Light Theme (Default) === */
 :root {
-  --bg-light: #f5f5f5;
-  --text-light: #222;
-  --bg-dark: #121212;
-  --text-dark: #eee;
-  --primary: #4CAF50;
-  --secondary: #888;
-  --border-radius: 8px;
+  --bg: #ffffff;
+  --text: #1a202c;
+  --primary: #2b6cb0;
+  --secondary: #edf2f7;
+  --border: #e2e8f0;
+  --highlight: #3182ce;
 }
 
-/* Dark Mode Support */
-body.dark-mode {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
+/* === Dark Mode (Auto Based on System Setting) === */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a202c;
+    --text: #edf2f7;
+    --primary: #63b3ed;
+    --secondary: #2d3748;
+    --border: #4a5568;
+    --highlight: #63b3ed;
+  }
 }
 
-body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: var(--bg-light);
-  color: var(--text-light);
-  transition: background 0.3s, color 0.3s;
-}
-
+/* General Page Styling */
 .results-page {
-  max-width: 900px;
-  margin: 20px auto;
+  max-width: 1000px;
+  margin: 40px auto;
   padding: 20px;
-  background: white;
-  border-radius: var(--border-radius);
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
-
-body.dark-mode .results-page {
-  background: #1e1e1e;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 /* Headings */
-h2, h3, h4 {
-  margin-top: 0;
+.results-page h2,
+.results-page h3,
+.results-page h4 {
+  color: var(--primary);
 }
 
 /* Progress Bar */
 .progress-container {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .progress-bar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
+  margin-top: 10px;
+  position: relative;
 }
 
 .progress-step {
-  text-align: center;
-  flex: 1;
-  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  position: relative;
+  margin-bottom: 15px;
 }
 
-.circle {
+.progress-step .circle {
   width: 30px;
   height: 30px;
-  margin: 0 auto;
   border-radius: 50%;
-  background: var(--secondary);
-  color: white;
+  background-color: var(--secondary);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: var(--text);
+  border: 2px solid var(--border);
+  z-index: 1;
 }
 
 .progress-step.active .circle {
-  background: var(--primary);
+  background-color: var(--highlight);
+  color: #fff;
+  border-color: var(--highlight);
 }
 
-/* Profile Sections */
+.progress-step p {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Connector Line */
+.progress-bar::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background-color: var(--border);
+  z-index: 0;
+}
+
+/* Profile Section */
 .shipment-profile {
-  margin: 20px 0;
+  margin-top: 40px;
 }
 
 .profile-columns {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 10px;
 }
 
 .column {
   flex: 1;
-  min-width: 200px;
-  margin: 10px;
+  background-color: var(--secondary);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
 }
 
 /* Tables */
-table {
+.description-table,
+.history-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: 15px;
+  margin-bottom: 30px;
 }
 
-th, td {
+.description-table th,
+.description-table td,
+.history-table th,
+.history-table td {
+  border: 1px solid var(--border);
   padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
 }
 
-body.dark-mode table {
-  border-color: #444;
-}
-
-body.dark-mode th, 
-body.dark-mode td {
-  border-bottom: 1px solid #444;
+.description-table th,
+.history-table th {
+  background-color: var(--primary);
+  color: #fff;
 }
 
 /* Status Note */
-section {
-  margin-bottom: 25px;
+.results-page section:last-child {
+  background-color: var(--secondary);
+  padding: 15px;
+  border-left: 5px solid var(--highlight);
+  border-radius: 6px;
 }
 
-/* Responsive */
+/* 📱 Responsive Design */
 @media (max-width: 768px) {
+  .progress-step {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .progress-bar::before {
+    display: none;
+  }
+
   .profile-columns {
     flex-direction: column;
   }
 
-  .progress-bar {
-    flex-direction: column;
-    align-items: flex-start;
+  .column {
+    margin-bottom: 20px;
   }
 
-  .progress-step {
-    margin-bottom: 10px;
+  .results-page {
+    padding: 15px;
+    margin: 20px auto;
   }
-}
 
-/* Smooth transition for dark mode */
-body, .results-page, table, th, td {
-  transition: background 0.3s, color 0.3s, border 0.3s;
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    font-size: 0.9rem;
+  }
 }
