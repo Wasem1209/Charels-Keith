@@ -64,7 +64,7 @@ th, td {
 }
 
 .progress-step.on-hold {
-  background-color: #ff4d4f; /* Red for "On Hold" */
+  /* Red for "On Hold" */
   color: #fff;
 }
 
