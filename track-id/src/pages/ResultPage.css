@@ -1,64 +1,140 @@
-.results-page {
-  padding: 2rem;
-  font-family: Arial, sans-serif;
+:root {
+  --bg-light: #f5f5f5;
+  --text-light: #222;
+  --bg-dark: #121212;
+  --text-dark: #eee;
+  --primary: #4CAF50;
+  --secondary: #888;
+  --border-radius: 8px;
 }
 
+/* Dark Mode Support */
+body.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
 
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: var(--bg-light);
+  color: var(--text-light);
+  transition: background 0.3s, color 0.3s;
+}
+
+.results-page {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+body.dark-mode .results-page {
+  background: #1e1e1e;
+}
+
+/* Headings */
+h2, h3, h4 {
+  margin-top: 0;
+}
+
+/* Progress Bar */
 .progress-container {
-  margin: 2rem 0;
+  margin-bottom: 20px;
 }
 
 .progress-bar {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .progress-step {
   text-align: center;
-  opacity: 0.5;
-}
-
-.progress-step.active {
-  font-weight: bold;
-  color: #4caf50;
-  opacity: 1;
+  flex: 1;
+  min-width: 80px;
 }
 
 .circle {
   width: 30px;
   height: 30px;
-  background: #ccc;
+  margin: 0 auto;
   border-radius: 50%;
-  line-height: 30px;
-  text-align: center;
-  margin: 0 auto 0.5rem;
+  background: var(--secondary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .progress-step.active .circle {
-  background: #4caf50;
-  color: white;
+  background: var(--primary);
+}
+
+/* Profile Sections */
+.shipment-profile {
+  margin: 20px 0;
 }
 
 .profile-columns {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .column {
-  width: 45%;
+  flex: 1;
+  min-width: 200px;
+  margin: 10px;
 }
 
+/* Tables */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
-}
-
-table, th, td {
-  border: 1px solid #ccc;
+  margin-top: 10px;
 }
 
 th, td {
-  padding: 0.5rem;
+  padding: 10px;
   text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+body.dark-mode table {
+  border-color: #444;
+}
+
+body.dark-mode th, 
+body.dark-mode td {
+  border-bottom: 1px solid #444;
+}
+
+/* Status Note */
+section {
+  margin-bottom: 25px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-columns {
+    flex-direction: column;
+  }
+
+  .progress-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .progress-step {
+    margin-bottom: 10px;
+  }
+}
+
+/* Smooth transition for dark mode */
+body, .results-page, table, th, td {
+  transition: background 0.3s, color 0.3s, border 0.3s;
 }
