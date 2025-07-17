@@ -62,3 +62,13 @@ th, td {
   padding: 0.5rem;
   text-align: left;
 }
+
+.progress-step.on-hold {
+  background-color: #ff4d4f; /* Red for "On Hold" */
+  color: #fff;
+}
+
+.progress-step.on-hold .circle {
+  background-color: #ff4d4f; 
+  color: #fff;
+}
