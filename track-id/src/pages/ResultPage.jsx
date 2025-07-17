@@ -9,7 +9,7 @@ function ResultsPage() {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
-    fetch(`https://ck-backend-8vtk.onrender.com/api/track/${encodeURIComponent(id)}`)
+    fetch(`https://ck-backend-8vtk.onrender.com/api/track/`)
       .then((res) => res.json())
       .then((data) => {
         if (data && !data.message) {
